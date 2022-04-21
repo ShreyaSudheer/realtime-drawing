@@ -1,3 +1,5 @@
+noseX = 0;
+noseY = 0;
 function preload(){
 }
 function setup(){
@@ -11,7 +13,10 @@ function setup(){
     poseNet.on('pose', gotPoses);
 }
 function draw(){
-    background('#c360fc');
+    background('#987ef7');
+    fill('#77e4f2');
+    stroke('#262aff');
+    square(noseX, noseY, 100);
 }
 function modelLoaded(){
     console.log("PoseNet is Initialized");
@@ -20,5 +25,8 @@ function gotPoses(results){
     if(results.length > 0)
     {
         console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY =  results[0].pose.nose.y;
+        console.log(" noseX = " +noseX+ " noseY = " +noseY);
     }
 }
